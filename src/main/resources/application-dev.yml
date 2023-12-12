@@ -1,0 +1,24 @@
+server:
+  port: ${PORT}
+  servlet:
+    context-path: ${APP_BASE_PATH}
+
+spring:
+  main:
+      allow-circular-references: true
+  application:
+    name: "@project.name@"
+
+  datasource:
+    url: ${POSTGRES_DATABASE_URL}
+    username: ${POSTGRES_DB_USERNAME}
+    password: ${POSTGRES_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
