@@ -18,8 +18,6 @@ public class BookAvailabilityStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private boolean status;
-    private int quantity;
     private Long bookId;
 }

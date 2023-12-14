@@ -1,22 +1,21 @@
-package com.onlinebookstoreapplication.dtos.responses;
+package com.onlinebookstoreapplication.dtos.requests;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.onlinebookstoreapplication.models.Book;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class GenericResponse {
-
-    private Book book;
-    private boolean availabilityStatus;
+public class UpdateBookRequestDTO {
+    @NotBlank(message = "Id cannot be null.")
+    private Long id;
+    @Valid
+    private BookRequestDTO bookRequestDTO;
 }

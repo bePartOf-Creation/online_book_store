@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -22,6 +24,9 @@ public class Book {
 
     private String title;
     private String author;
+    private int quantity;
     private String category;
     private String isbn;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
