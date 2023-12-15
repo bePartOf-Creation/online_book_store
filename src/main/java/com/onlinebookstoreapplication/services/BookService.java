@@ -11,6 +11,6 @@ import java.util.List;
 public interface BookService {
     Book createBook(BookRequestDTO bookRequestDTO);
     List<GenericResponse> getAllBooks(int pageNumber, int pageSize);
-    Book updateBook(UpdateBookRequestDTO requestDTO);
+    Book updateBook(Long id,UpdateBookRequestDTO requestDTO);
     void deleteBook(Long id);
 }

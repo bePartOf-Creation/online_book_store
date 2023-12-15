@@ -1,6 +1,7 @@
 package com.onlinebookstoreapplication.utils.builders;
 
 import com.onlinebookstoreapplication.dtos.requests.BookRequestDTO;
+import com.onlinebookstoreapplication.dtos.requests.UpdateBookRequestDTO;
 import com.onlinebookstoreapplication.models.Book;
 
 import java.time.LocalDateTime;
@@ -19,8 +20,7 @@ public class ModelBuilder {
 
 
     }
-    public static Book modelMapper(BookRequestDTO bookRequestDTO, Book foundBook) {
-        foundBook.setIsbn(bookRequestDTO.getIsbn());
+    public static Book modelMapper(UpdateBookRequestDTO bookRequestDTO, Book foundBook) {
         foundBook.setAuthor(bookRequestDTO.getAuthor());
         foundBook.setQuantity(Math.max(bookRequestDTO.getQuantity(), 0));
         foundBook.setTitle(bookRequestDTO.getTitle());

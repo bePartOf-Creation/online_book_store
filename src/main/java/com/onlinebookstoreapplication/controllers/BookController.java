@@ -23,9 +23,9 @@ public class BookController {
         return new ResponseEntity<>(this.bookService.createBook(bookRequestDTO), HttpStatus.CREATED);
     }
 
-    @PutMapping("book/update")
-    public ResponseEntity<?> updateBook(@RequestBody @Valid UpdateBookRequestDTO updateBookRequestDTO){
-        return new ResponseEntity<>(this.bookService.updateBook(updateBookRequestDTO), HttpStatus.CREATED);
+    @PutMapping("book/update/{id}")
+    public ResponseEntity<?> updateBook(@RequestBody @Valid UpdateBookRequestDTO updateBookRequestDTO, @PathVariable Long id){
+        return new ResponseEntity<>(this.bookService.updateBook(id,updateBookRequestDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("books")
@@ -36,6 +36,7 @@ public class BookController {
 
     @DeleteMapping("book/{id}")
     public ResponseEntity<?> deleteBook(@PathVariable Long id){
+        this.bookService.deleteBook(id);
         return new ResponseEntity<>("Book was Successfully deleted", HttpStatus.OK);
     }
 }
