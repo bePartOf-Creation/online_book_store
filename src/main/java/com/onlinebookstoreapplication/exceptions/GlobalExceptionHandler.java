@@ -1,5 +1,6 @@
 package com.onlinebookstoreapplication.exceptions;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -24,9 +25,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return  errors;
     }
 
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(BookNotFoundException.class)
     public Map<String, Object> bookStoreGlobalExceptionHandler(BookNotFoundException ex){
+        Map<String, Object> errors = new HashMap<>();
+        errors.put("error", ex.getMessage());
+        return  errors;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public Map<String, Object> bookStoreGlobalExceptionHandler(DataIntegrityViolationException ex){
         Map<String, Object> errors = new HashMap<>();
         errors.put("error", ex.getMessage());
         return  errors;

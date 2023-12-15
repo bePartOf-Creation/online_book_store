@@ -61,9 +61,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book updateBook(UpdateBookRequestDTO updateBookRequestDTO) {
-        Optional<Book> foundBook = getBook(this.bookRepo, updateBookRequestDTO.getId());
-        Book mappedBook = modelMapper(updateBookRequestDTO.getBookRequestDTO(), foundBook.get());
+    public Book updateBook(Long id,UpdateBookRequestDTO updateBookRequestDTO) {
+        Optional<Book> foundBook = getBook(this.bookRepo, id);
+        Book mappedBook = modelMapper(updateBookRequestDTO, foundBook.get());
         boolean availabilityStatus = foundBook.get().getQuantity() > 0;
         this.bookAvailabilityRepo.updateBookAvailabilityStatus(availabilityStatus, mappedBook.getId());
         return this.bookRepo.save(mappedBook);
